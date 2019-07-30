@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import{PokemonService} from '../service/pokemon.service';
 
 @Component({
   selector: 'app-pokemons',
@@ -6,10 +7,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pokemons.page.scss'],
 })
 export class PokemonsPage implements OnInit {
+  time: number = 5;
+  pokemons: any[]=[];
+  constructor(private pokemonService:PokemonService) { }
 
-  constructor() { }
+  catchPokemon()
+  {
+    this.waitCounter();
+    this.pokemonService.getPokemon(this.getRandomPokemonID()).subscribe(
+      (res)=> {
+        console.log(res);
+        this.pokemons.push(res);
+      },
+      (error)=>
+      {
+        console.log(error);
+      }
+    );
+  }
+
+  getRandomPokemonID()
+  {
+    return Math.floor(Math.random()*807 + 1);
+  }
+
+  waitCounter()
+  {
+    const interval = setInterval(() => {
+      this.time--;
+      if(this.time === 0){
+        this.time= 5;
+        clearInterval(interval);
+      }
+    }, 1000);
+  }
 
   ngOnInit() {
+  }
+
+  goToPokemonProfile(id){
+    console.log('Ir para o perfil do pokemon de id', id);
   }
 
 }
