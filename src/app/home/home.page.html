@@ -9,5 +9,29 @@
 <ion-content>
   <div class="ion-padding">
     Apenas uma home.
+    <img= src="{{myPhoto}}">
+    <h4>{{myPosition}}</h4>
+    <ion-button (click)="openCamera()" expand="block">
+      Câmera
+    </ion-button>
+
+    <ion-button (click)="openGallery()" expand="block">
+      Galeria
+    </ion-button>
+
+    <ion-button (click)="getGeolocation()" expand="block">
+      Geolocalização
+    </ion-button>
+  
+  
+    <ion-button (click)="changePage()" expand="block">
+      Pokemons
+    </ion-button>
+
+    <ion-button routerLinkActive="active" expand="block"> <a routerLink="/pokemons"> pokemons</a> 
+      
+    </ion-button> 
+
+    
   </div>
 </ion-content>

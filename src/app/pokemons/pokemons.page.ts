@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import{PokemonService} from '../service/pokemon.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-pokemons',
@@ -9,7 +10,7 @@ import{PokemonService} from '../service/pokemon.service';
 export class PokemonsPage implements OnInit {
   time: number = 5;
   pokemons: any[]=[];
-  constructor(private pokemonService:PokemonService) { }
+  constructor(private pokemonService:PokemonService, private router: Router) { }
 
   catchPokemon()
   {
@@ -47,6 +48,9 @@ export class PokemonsPage implements OnInit {
 
   goToPokemonProfile(id){
     console.log('Ir para o perfil do pokemon de id', id);
+    // this.router.navigate(['pokemons', id]);
+    this.router.navigateByUrl('/perfil/'+id)
+
   }
 
 }
